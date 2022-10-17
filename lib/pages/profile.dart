@@ -25,14 +25,16 @@ class ProfileState extends State<Profile> {
         .get()
         .then((value) {
       loggedUser = UserModals.fromMap(value.data());
-      setState(() {});
+      setState(() {
+        loggedUser;
+      });
     });
   }
 
   // String name = "{$loggedUser.name}";
-  String urn = '190280118';
-  String branch = 'CSE';
-  String batch = '2019';
+  // String urn = '190280118';
+  // String branch = 'CSE';
+  // String batch = '2019';
   static const TextStyle optionStyle =
       TextStyle(fontSize: 15, fontWeight: FontWeight.normal);
   @override
@@ -71,10 +73,14 @@ class ProfileState extends State<Profile> {
               ),
               child: Column(
                 children: [
-                  showData(FontAwesomeIcons.user, "{$loggedUser.name}"),
-                  showData(FontAwesomeIcons.university, urn),
-                  showData(FontAwesomeIcons.table, batch),
-                  showData(FontAwesomeIcons.networkWired, branch),
+                  showData(FontAwesomeIcons.user,
+                      loggedUser.name ?? "Anonymous User"),
+                  showData(FontAwesomeIcons.envelope,
+                      loggedUser.email ?? "Anonymous Email"),
+                  showData(FontAwesomeIcons.table,
+                      loggedUser.sem ?? "Anonymous Sem" " sem"),
+                  showData(FontAwesomeIcons.networkWired,
+                      loggedUser.department ?? "Anonymous department"),
                 ],
               ),
             ),
