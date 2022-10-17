@@ -1,7 +1,7 @@
 {
   "file_generated_by": "FlutterFire CLI",
   "purpose": "FirebaseAppID & ProjectID for this Firebase app in this directory",
-  "GOOGLE_APP_ID": "1:1096351137913:ios:673bbf0fb4f3380bec94a8",
-  "FIREBASE_PROJECT_ID": "myapp1ec45",
-  "GCM_SENDER_ID": "1096351137913"
+  "GOOGLE_APP_ID": "1:1055414614902:ios:6bdc1a7367edd13c23d857",
+  "FIREBASE_PROJECT_ID": "schedulo-fire-app",
+  "GCM_SENDER_ID": "1055414614902"
 }
