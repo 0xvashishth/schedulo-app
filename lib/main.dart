@@ -1,3 +1,4 @@
+// ignore_for_file: prefer_const_constructors
 import 'package:schedulo/data/calculator.dart';
 import 'package:schedulo/data/faq.dart';
 import 'package:schedulo/data/halloffame.dart';
