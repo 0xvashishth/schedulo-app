@@ -197,7 +197,7 @@ class _LoginState extends State<Login> {
     try {
       if (_formKeyEmail.currentState!.validate() &&
           _formKeyPass.currentState!.validate()) {
-        await _auth
+        await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password)
             .then((uid) => {
                   Fluttertoast.showToast(msg: 'Login Successful'),
