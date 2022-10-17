@@ -29,6 +29,16 @@
             {
               "client_id": "1055414614902-rprbrnsb9vv8p4amteh6ou91v40s3hm7.apps.googleusercontent.com",
               "client_type": 3
+<<<<<<< HEAD
+            },
+            {
+              "client_id": "1055414614902-a08ltverispal1f31ssas96n8dag29n6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.schedulo"
+              }
+=======
+>>>>>>> refs/remotes/origin/main
             }
           ]
         }
