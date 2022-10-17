@@ -31,6 +31,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     //first name field
+
     final firstNameField = TextFormField(
         autofocus: false,
         controller: firstNameEditingController,
@@ -197,6 +198,10 @@ class _SignUpState extends State<SignUp> {
                     SizedBox(height: 20),
                     emailField,
                     SizedBox(height: 20),
+                    DepartmentDropDown(),
+                    SizedBox(height: 20),
+                    SemesterDropDown(),
+                    SizedBox(height: 20),
                     passwordField,
                     SizedBox(height: 20),
                     confirmPasswordField,
@@ -274,5 +279,119 @@ class _SignUpState extends State<SignUp> {
 
     Navigator.pushAndRemoveUntil((context),
         MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
+  }
+}
+
+const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+
+class DepartmentDropDown extends StatefulWidget {
+  // const DepartmentDropDown({super.key});
+
+  @override
+  State<DepartmentDropDown> createState() => _DepartmentDropDownState();
+}
+
+class _DepartmentDropDownState extends State<DepartmentDropDown> {
+  String dropdownValue = list.first;
+
+  static const List<String> departmentList = <String>[
+    'Select Department',
+    'CE',
+    'IT',
+    'CHE',
+    'ME',
+    'EC',
+    'CIVIL'
+  ];
+  String dropdownDepartmentValue = departmentList.first;
+
+  // var departmentField =
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 300.0,
+      height: 50.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.blueGrey),
+      ),
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        child: DropdownButton<String>(
+          value: dropdownDepartmentValue,
+          hint: Text("Select Department"),
+          onChanged: (String? value) {
+            setState(() {
+              dropdownDepartmentValue = value!;
+              print(value);
+            });
+          },
+          items: departmentList.map((String value) {
+            return new DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+        ),
+      ),
+    );
+  }
+}
+
+class SemesterDropDown extends StatefulWidget {
+  // const DepartmentDropDown({super.key});
+
+  @override
+  State<SemesterDropDown> createState() => _SemesterDropDownState();
+}
+
+class _SemesterDropDownState extends State<SemesterDropDown> {
+  String dropdownValue = list.first;
+
+  static const List<String> departmentList = <String>[
+    'Select Semester',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+  ];
+  String dropdownDepartmentValue = departmentList.first;
+
+  // var departmentField =
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 300.0,
+      height: 50.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.blueGrey),
+      ),
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        child: DropdownButton<String>(
+          value: dropdownDepartmentValue,
+          hint: Text("Select Department"),
+          onChanged: (String? value) {
+            setState(() {
+              dropdownDepartmentValue = value!;
+              print(value);
+            });
+          },
+          items: departmentList.map((String value) {
+            return new DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+        ),
+      ),
+    );
   }
 }
