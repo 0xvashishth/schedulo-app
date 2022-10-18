@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:schedulo/modals/userModals.dart';
 import 'package:schedulo/services/lecture-service.dart';
@@ -19,12 +20,27 @@ class timeCard extends StatefulWidget {
 
 class _timeCardState extends State<timeCard> {
   // var TName = "";
-  // initState() {
-  //   super.initState();
-  //   // is_student = true;
-  //   // getUserType();
-  //   TName = "";
-  // }
+  var student_branch = "";
+  User? user = FirebaseAuth.instance.currentUser;
+  initState() {
+    super.initState();
+    student_branch = "";
+    getUserType();
+    // TName = "";
+  }
+
+  Future getUserType() async {
+    print("Form student_branch");
+    student_branch = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      return value.data()!['department'];
+    }) as String;
+    setState(() {});
+    // print(is_student);
+  }
 
   @override
   // var key = UserService.getUser("dsds");
@@ -49,34 +65,24 @@ class _timeCardState extends State<timeCard> {
                     color: Colors.black,
                   );
                 }
-                List<LectureModel>? tInstance = snapshot.data;
+                List<LectureModel>? tInstance1 = snapshot.data;
+                List<LectureModel>? tInstance = [];
+                for (var lec in tInstance1!) {
+                  if (lec.department == student_branch) {
+                    print("yes");
+                    tInstance.add(lec);
+                  }
+                }
                 return SizedBox(
                   height: 600,
                   width: MediaQuery.of(context).size.height,
                   child: ListView.separated(
                     separatorBuilder: (context, index) => Divider(
-                      color: Colors.grey[800],
-                    ),
+                        // color: Colors.grey[800],
+                        ),
                     itemCount: tInstance!.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      // DatabaseService ds = new DatabaseService();
-                      // String TName = FirebaseFirestore.instance
-                      //     .collection('users')
-                      //     .doc(tInstance[index].userInstance)
-                      //     .get()
-                      //     .then((value) {
-                      //   return value.data()?['name'];
-                      // }) as String;
-                      // print(TName);
-                      // var ttest = ds.getUserName(tInstance[index].userInstance);
-                      // print(ttest);
-                      // print("hjhj");
-                      // setState(() {});
-
-                      // print(TName + "he");
-                      // getName();
-                      // print(TName);
                       String Tname = tInstance[index].TName ?? "";
                       var duration = tInstance[index].duration.toString();
                       var textsubtitle = Tname + " : " + duration + " hours";
@@ -143,6 +149,23 @@ class _timeCardState extends State<timeCard> {
                           ),
                         ),
                       );
+                      // DatabaseService ds = new DatabaseService();
+                      // String TName = FirebaseFirestore.instance
+                      //     .collection('users')
+                      //     .doc(tInstance[index].userInstance)
+                      //     .get()
+                      //     .then((value) {
+                      //   return value.data()?['name'];
+                      // }) as String;
+                      // print(TName);
+                      // var ttest = ds.getUserName(tInstance[index].userInstance);
+                      // print(ttest);
+                      // print("hjhj");
+                      // setState(() {});
+
+                      // print(TName + "he");
+                      // getName();
+                      // print(TName);
                     },
                   ),
                 );
