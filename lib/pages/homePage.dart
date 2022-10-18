@@ -35,13 +35,13 @@ class _HomePageState extends State<HomePage> {
       ),
       bottomNavigationBar: ClipRRect(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30.0),
-          topRight: Radius.circular(30.0),
+          topLeft: Radius.circular(15.0),
+          topRight: Radius.circular(15.0),
         ),
         child: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.update),
+              icon: Icon(Icons.timelapse_sharp),
               label: 'Updates',
             ),
             BottomNavigationBarItem(
