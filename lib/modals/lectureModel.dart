@@ -15,7 +15,8 @@ class LectureModel {
   Timestamp? will_end_at;
   int? duration;
   // UserModals userInstance;
-  DocumentReference? userInstance;
+  String? userInstance;
+  
   // (this.will_end_at.hour * 60 + will_end_at.minute) * 60 - (will_start_at.hour * 60 + will_start_at.minute) * 60,
   LectureModel({
     this.subject,

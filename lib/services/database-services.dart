@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -26,5 +28,20 @@ class DatabaseService {
     print(data['is_student']);
 
     return data['is_student'];
+  }
+
+  Future<String> getUserName(uid) async {
+    log("Form is_student");
+    print(uid);
+    var user_name = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .get()
+        .then((value) {
+      return value.data()?['name'];
+    }) as String;
+    print("hello");
+    print(user_name);
+    return user_name;
   }
 }

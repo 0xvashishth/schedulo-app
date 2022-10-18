@@ -1,10 +1,13 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:schedulo/modals/userModals.dart';
 import 'package:schedulo/services/lecture-service.dart';
 import 'package:schedulo/modals/lectureModel.dart';
 import 'package:intl/intl.dart';
+
+import '../services/database-services.dart';
 
 class timeCard extends StatefulWidget {
   const timeCard({key});
@@ -14,6 +17,14 @@ class timeCard extends StatefulWidget {
 }
 
 class _timeCardState extends State<timeCard> {
+  // var TName = "";
+  // initState() {
+  //   super.initState();
+  //   // is_student = true;
+  //   // getUserType();
+  //   TName = "";
+  // }
+
   @override
   // var key = UserService.getUser("dsds");
   Widget build(BuildContext context) {
@@ -48,11 +59,22 @@ class _timeCardState extends State<timeCard> {
                     itemCount: tInstance!.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
+                      // DatabaseService ds = new DatabaseService();
+                      String TName = FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(tInstance[index].userInstance)
+                          .get()
+                          .then((value) {
+                        return value.data()?['name'];
+                      }) as String;
+                      // await ds.getUserName(tInstance[index].userInstance);
+                      // setState(() {});
+
+                      // print(TName + "he");
+                      // getName();
+                      // print(TName);
                       var duration = tInstance[index].duration.toString();
-                      var textsubtitle = tInstance[index].description! +
-                          " : " +
-                          duration +
-                          " hours";
+                      var textsubtitle = TName + " : " + duration + " hours";
                       var starting = tInstance[index].will_start_at!.toDate();
                       String formattedStartTime =
                           DateFormat.Hms().format(starting);
