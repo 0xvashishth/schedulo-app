@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:schedulo/services/lecture-service.dart';
+import 'package:schedulo/modals/lectureModel.dart';
 
 class timeCard extends StatefulWidget {
   const timeCard({key});
@@ -14,17 +18,68 @@ class _timeCardState extends State<timeCard> {
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Column(
-          children: const <Widget>[
+          children: [
             SizedBox(
               height: 5,
             ),
             // Spacer(),
             Center(child: ElevatedCardExample()),
-            ElevatedCardExample(),
-            ElevatedCardExample(),
-            ElevatedCardExample(),
-            ElevatedCardExample(),
-            // Spacer(),
+            StreamBuilder<List<LectureModel>>(
+              stream: LectureService().listLectures(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  print(snapshot.hasData);
+                  log("Hello");
+                  return const CircularProgressIndicator(
+                    color: Colors.black,
+                  );
+                }
+                List<LectureModel>? todos = snapshot.data;
+                return SizedBox(
+                  height: 500,
+                  width: MediaQuery.of(context).size.height,
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) => Divider(
+                      color: Colors.grey[800],
+                    ),
+                    itemCount: todos!.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Dismissible(
+                          key: Key(todos[index].subject ?? ""),
+                          background: Container(
+                            padding: const EdgeInsets.only(left: 20),
+                            alignment: Alignment.centerLeft,
+                            color: Colors.red,
+                            child: const Icon(Icons.delete),
+                          ),
+                          onDismissed: (direction) async {
+                            print("Ondismiss");
+                          },
+                          child: Container(
+                            height: 60,
+                            width: MediaQuery.of(context).size.width,
+                            margin: const EdgeInsets.symmetric(horizontal: 10),
+                            decoration: BoxDecoration(
+                                color: const Color(0xff3B999B),
+                                borderRadius: BorderRadius.circular(5)),
+                            child: ListTile(
+                              onTap: () {},
+                              title: Text(
+                                todos[index].subject ?? "",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.grey[200],
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ));
+                    },
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
