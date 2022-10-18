@@ -43,7 +43,7 @@ class DatabaseService {
     });
     // print("hello");
     print("kk");
-    print(user_name.email);
+    print(user_name['email']);
     print("jj");
     return user_name;
   }
