@@ -56,7 +56,7 @@ class ProfileState extends State<Profile> {
               });
             },
             child: const Text(
-              'LOGOUT',
+              'Logout',
               style: TextStyle(fontSize: 20),
             ),
           ),
@@ -67,11 +67,13 @@ class ProfileState extends State<Profile> {
           shrinkWrap: true,
           children: [
             buildPro(),
+            SizedBox(height: 40),
             Card(
               elevation: 8,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50),
+                borderRadius: BorderRadius.circular(20),
               ),
+              margin: EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: [
                   showData(FontAwesomeIcons.user,
