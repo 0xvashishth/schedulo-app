@@ -58,20 +58,23 @@ class _timeCardState extends State<timeCard> {
               stream: LectureService().listLectures(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
-                  print(snapshot.hasData);
-                  log("Hello");
+                  // print(snapshot.hasData);
+                  // log("Hello");
                   return const CircularProgressIndicator(
                     color: Colors.black,
                   );
                 }
                 List<LectureModel>? tInstance1 = snapshot.data;
                 List<LectureModel>? tInstance = [];
+                var currentWeekDay = DateTime.now().weekday;
                 for (var lec in tInstance1!) {
                   if (lec.department == student_branch) {
-                    print("yes");
-                    tInstance.add(lec);
+                    if (currentWeekDay == lec.weekday) {
+                      tInstance.add(lec);
+                    }
                   }
                 }
+                tInstance.sort((a, b) => a.compareTo(b));
                 return SizedBox(
                   height: 600,
                   width: MediaQuery.of(context).size.height,
