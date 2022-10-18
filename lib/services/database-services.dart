@@ -14,6 +14,7 @@ class DatabaseService {
   // User? user = _auth.currentUser;
 
   // get user type
+  // Currently not in use
   Future<bool> getUserType() async {
     final Function setUserType;
     User? user = FirebaseAuth.instance.currentUser;
