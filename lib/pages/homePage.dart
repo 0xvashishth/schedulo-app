@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
         child: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.timelapse_sharp),
+              icon: Icon(Icons.calendar_month),
               label: 'Updates',
             ),
             BottomNavigationBarItem(
