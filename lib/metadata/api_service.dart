@@ -3,8 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
 class ApiService {
-  static String url =
-      'https://www.mrsptu.ac.in/uploads2021/daa_notifications/NOTIFICATION%20113%20-%20ACADEMIC%20CALENDAR%20(NEW%20BATCH)%20FOR%20SESSION%202021-22%20(1).pdf';
+  static String url = 'https://ddu.ac.in/pdf/Academic%20Calendar%202022-23.pdf';
   static Future<String> loadPDF() async {
     var response = await http.get(Uri.parse(url));
     var dir = await getApplicationDocumentsDirectory();
