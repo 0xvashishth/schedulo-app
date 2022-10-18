@@ -9,6 +9,8 @@ import 'package:schedulo/modals/userModals.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+var depart, sem;
+
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
 
@@ -270,6 +272,9 @@ class _SignUpState extends State<SignUp> {
     userModel.email = user!.email;
     userModel.uid = user.uid;
     userModel.name = firstNameEditingController.text;
+    userModel.department = depart;
+    userModel.sem = sem;
+    userModel.is_student = true;
 
     await firebaseFirestore
         .collection("users")
@@ -324,6 +329,7 @@ class _DepartmentDropDownState extends State<DepartmentDropDown> {
           onChanged: (String? value) {
             setState(() {
               dropdownDepartmentValue = value!;
+              depart = dropdownDepartmentValue;
               print(value);
             });
           },
@@ -381,6 +387,7 @@ class _SemesterDropDownState extends State<SemesterDropDown> {
           onChanged: (String? value) {
             setState(() {
               dropdownDepartmentValue = value!;
+              sem = dropdownDepartmentValue;
               print(value);
             });
           },
