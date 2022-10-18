@@ -11,7 +11,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 //   static final _auth = FirebaseAuth.instance;
 //   User? user = _auth.currentUser;
 
-
 class LectureService {
   CollectionReference lecturesCollection =
       FirebaseFirestore.instance.collection("Lectures");
@@ -30,6 +29,7 @@ class LectureService {
 
   List<LectureModel> lectureFromFirestore(QuerySnapshot snapshot) {
     return snapshot.docs.map((map) {
+      print(map);
       return LectureModel.fromMap(map);
     }).toList();
   }

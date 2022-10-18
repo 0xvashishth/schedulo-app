@@ -60,21 +60,23 @@ class _timeCardState extends State<timeCard> {
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       // DatabaseService ds = new DatabaseService();
-                      String TName = FirebaseFirestore.instance
-                          .collection('users')
-                          .doc(tInstance[index].userInstance)
-                          .get()
-                          .then((value) {
-                        return value.data()?['name'];
-                      }) as String;
+                      // String TName = FirebaseFirestore.instance
+                      //     .collection('users')
+                      //     .doc(tInstance[index].userInstance)
+                      //     .get()
+                      //     .then((value) {
+                      //   return value.data()?['name'];
+                      // }) as String;
+                      // print(TName);
                       // await ds.getUserName(tInstance[index].userInstance);
                       // setState(() {});
 
                       // print(TName + "he");
                       // getName();
                       // print(TName);
+                      String Tname = tInstance[index].TName ?? "";
                       var duration = tInstance[index].duration.toString();
-                      var textsubtitle = TName + " : " + duration + " hours";
+                      var textsubtitle = Tname + " : " + duration + " hours";
                       var starting = tInstance[index].will_start_at!.toDate();
                       String formattedStartTime =
                           DateFormat.Hms().format(starting);
