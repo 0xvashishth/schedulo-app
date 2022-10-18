@@ -9,7 +9,6 @@ import 'package:schedulo/modals/lectureModel.dart';
 import 'package:intl/intl.dart';
 
 import '../services/database-services.dart';
-import '../widget/datetime_picker.dart';
 
 class timeCard extends StatefulWidget {
   const timeCard({key});
@@ -78,9 +77,9 @@ class _timeCardState extends State<timeCard> {
                   width: MediaQuery.of(context).size.height,
                   child: ListView.separated(
                     separatorBuilder: (context, index) => Divider(
-                        // color: Colors.grey[800],
-                        ),
-                    itemCount: tInstance!.length,
+                      color: Colors.grey[800],
+                    ),
+                    itemCount: tInstance.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       String Tname = tInstance[index].TName ?? "";
