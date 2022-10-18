@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_constructors
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:schedulo/services/database-services.dart';
-
 import 'timeCard.dart';
 
 class Updates extends StatefulWidget {
@@ -14,15 +15,15 @@ class Updates extends StatefulWidget {
   _UpdatesState createState() => _UpdatesState();
 }
 
-bool is_student = true;
-
 class _UpdatesState extends State<Updates> {
-  DatabaseService ds = DatabaseService();
+  // DatabaseService ds = DatabaseService();
+  User? user = FirebaseAuth.instance.currentUser;
+  bool? is_student = true;
 
-  void initState() {
+  initState() {
     super.initState();
-    DatabaseService ds = DatabaseService();
-    is_student = ds.getUserType() as bool;
+    is_student = true;
+    getUserType();
   }
 
   @override
@@ -36,7 +37,7 @@ class _UpdatesState extends State<Updates> {
         child: timeCard(),
       ),
 
-      floatingActionButton: !is_student
+      floatingActionButton: is_student!
           ? FloatingActionButton(
               onPressed: () {
                 // Add your onPressed code here!
@@ -56,5 +57,18 @@ class _UpdatesState extends State<Updates> {
       //   child: const timeCard(),
       // ),
     );
+  }
+
+  Future getUserType() async {
+    log("Form is_student");
+    is_student = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      return value.data()!['is_student'];
+    }) as bool;
+    setState(() {});
+    print(is_student);
   }
 }
