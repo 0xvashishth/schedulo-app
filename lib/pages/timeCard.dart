@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:schedulo/modals/userModals.dart';
 import 'package:schedulo/services/lecture-service.dart';
 import 'package:schedulo/modals/lectureModel.dart';
 
@@ -13,6 +14,7 @@ class timeCard extends StatefulWidget {
 
 class _timeCardState extends State<timeCard> {
   @override
+  // var key = UserService.getUser("dsds");
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -34,7 +36,7 @@ class _timeCardState extends State<timeCard> {
                     color: Colors.black,
                   );
                 }
-                List<LectureModel>? todos = snapshot.data;
+                List<LectureModel>? tInstance = snapshot.data;
                 return SizedBox(
                   height: 500,
                   width: MediaQuery.of(context).size.height,
@@ -42,39 +44,66 @@ class _timeCardState extends State<timeCard> {
                     separatorBuilder: (context, index) => Divider(
                       color: Colors.grey[800],
                     ),
-                    itemCount: todos!.length,
+                    itemCount: tInstance!.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      return Dismissible(
-                          key: Key(todos[index].subject ?? ""),
-                          background: Container(
-                            padding: const EdgeInsets.only(left: 20),
-                            alignment: Alignment.centerLeft,
-                            color: Colors.red,
-                            child: const Icon(Icons.delete),
-                          ),
-                          onDismissed: (direction) async {
-                            print("Ondismiss");
-                          },
-                          child: Container(
-                            height: 60,
-                            width: MediaQuery.of(context).size.width,
-                            margin: const EdgeInsets.symmetric(horizontal: 10),
-                            decoration: BoxDecoration(
-                                color: const Color(0xff3B999B),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: ListTile(
-                              onTap: () {},
-                              title: Text(
-                                todos[index].subject ?? "",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.grey[200],
-                                  fontWeight: FontWeight.w600,
+                      var duration = tInstance[index].duration.toString();
+                      var textsubtitle = tInstance[index].description! +
+                          " : " +
+                          duration +
+                          " hours";
+                        
+                      return Container(
+                        height: 130,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            elevation: 3,
+                            color: const Color.fromARGB(255, 244, 244, 244),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                ListTile(
+                                  leading: Icon(Icons.school_sharp),
+                                  title: Text(tInstance[index].subject ?? ""),
+                                  subtitle: Text(textsubtitle),
                                 ),
-                              ),
+                                // Text(todos[index].department ?? ""),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  // ignore: prefer_const_literals_to_create_immutables
+                                  children: <Widget>[
+                                    // TextButton(
+                                    //   child: const Text('BUY TICKETS'),
+                                    //   onPressed: () {/* ... */},
+                                    // ),
+                                    // ignore: prefer_const_constructors
+                                    Text(
+                                      "9:00 AM to 10:00 AM",
+                                      style: const TextStyle(
+                                          color: Color.fromARGB(
+                                              255, 123, 123, 123)),
+                                    ),
+                                    // const SizedBox(width: 8),
+                                    // TextButton(
+                                    //   child: const Text('LISTEN'),
+                                    //   onPressed: () {/* ... */},
+                                    // ),
+                                    const SizedBox(
+                                      width: 10,
+                                      // height: 10,
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  // width: 10,
+                                  height: 10,
+                                ),
+                              ],
                             ),
-                          ));
+                          ),
+                        ),
+                      );
                     },
                   ),
                 );

@@ -22,7 +22,7 @@ class _UpdatesState extends State<Updates> {
   void initState() {
     super.initState();
     DatabaseService ds = DatabaseService();
-    is_student = ds.getUserType() as bool;
+    // is_student = ds.getUserType() as bool;
   }
 
   @override

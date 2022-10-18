@@ -7,19 +7,19 @@ import 'userModals.dart';
 class LectureModel {
   String? subject;
   String? description;
-  String lid;
+  String uid;
   String? department;
   String? sem;
   int? weekday;
-  TimeOfDay? will_start_at;
-  TimeOfDay? will_end_at;
+  Timestamp? will_start_at;
+  Timestamp? will_end_at;
   int? duration;
   // UserModals userInstance;
   DocumentReference? userInstance;
   // (this.will_end_at.hour * 60 + will_end_at.minute) * 60 - (will_start_at.hour * 60 + will_start_at.minute) * 60,
   LectureModel({
     this.subject,
-    required this.lid,
+    required this.uid,
     this.description,
     this.department,
     this.sem,
@@ -34,7 +34,7 @@ class LectureModel {
   factory LectureModel.fromMap(map) {
     return LectureModel(
       subject: map['subject'],
-      lid: map.id,
+      uid: map.id,
       description: map['description'],
       department: map['department'],
       sem: map['sem'],

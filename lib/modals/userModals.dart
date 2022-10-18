@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserModals {
   String? name;
   String? email;
@@ -38,4 +40,43 @@ class UserModals {
       'is_student': is_student
     };
   }
+}
+
+class UserService {
+  CollectionReference usersCollection =
+      FirebaseFirestore.instance.collection("users");
+
+  // Future createNewTodo(String title) async {
+  //   return await todosCollection.add({
+  //     "title": title,
+  //     "isComplet": false,
+  //   });
+  // }
+
+  // Future completTask(uid) async {
+  //   await todosCollection.doc(uid).update({"isComplet": true});
+  // }
+
+  Future<Object> getUser(uid) async {
+    DocumentSnapshot<Object?> users = await usersCollection.doc(uid).get();
+    return users;
+  }
+
+  // String todoFromFirestore(String uid) {
+  //   // return usersCollection.doc(uid).get();
+  // }
+
+  // List<Todo> todoFromFirestore(QuerySnapshot snapshot) {
+  //   return snapshot.docs.map((e) {
+  //     return Todo(
+  //       isComplet: e["isComplet"],
+  //       title: e["title"],
+  //       uid: e.id,
+  //     );
+  //   }).toList();
+  // }
+
+  // Stream<List<Todo>> listTodos() {
+  //   return todosCollection.snapshots().map(todoFromFirestore);
+  // }
 }
