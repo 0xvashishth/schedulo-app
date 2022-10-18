@@ -8,7 +8,11 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:schedulo/modals/lectureModel.dart';
 import 'package:schedulo/modals/userModals.dart';
 import 'package:schedulo/services/database-services.dart';
+
 import 'package:schedulo/services/lecture-service.dart';
+
+import 'package:schedulo/services/user-services.dart';
+
 import 'timeCard.dart';
 import 'package:intl/intl.dart';
 
@@ -26,6 +30,7 @@ class _UpdatesState extends State<Updates> {
   // DatabaseService ds = DatabaseService();
   User? user = FirebaseAuth.instance.currentUser;
   bool? is_student = true;
+  // UserService us = UserService();
 
   final TextEditingController _todoController = TextEditingController();
   final TextEditingController _subjectController = TextEditingController();
@@ -42,6 +47,7 @@ class _UpdatesState extends State<Updates> {
     super.initState();
     is_student = true;
     getUserType();
+    // us.userFormFirebase(user!.uid);
   }
 
   @override
