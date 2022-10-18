@@ -2,6 +2,7 @@
 import 'package:schedulo/pages/dashBoard.dart';
 import 'package:flutter/material.dart';
 import 'package:schedulo/pages/profile.dart';
+import 'package:schedulo/pages/profilePage.dart';
 import 'package:schedulo/pages/updates.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,7 +19,8 @@ class _HomePageState extends State<HomePage> {
   static const List<Widget> _widgetOptions = <Widget>[
     Updates(),
     DashBoard(),
-    Profile(),
+    // Profile(),
+    ProfilePage1(),
   ];
 
   void _onItemTapped(int index) {
@@ -55,7 +57,8 @@ class _HomePageState extends State<HomePage> {
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.white,
-          backgroundColor: Colors.blue[600],
+          unselectedItemColor: Color.fromARGB(255, 0, 0, 0),
+          backgroundColor: Colors.blue[700],
           onTap: _onItemTapped,
           elevation: 0,
         ),

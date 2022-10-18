@@ -19,13 +19,12 @@ class UserModals {
   //data from server
   factory UserModals.fromMap(map) {
     return UserModals(
-      name: map['name'],
-      uid: map['uid'],
-      email: map['email'],
-      department: map['department'],
-      sem: map['sem'],
-      is_student: map['is_student']
-    );
+        name: map['name'],
+        uid: map['uid'],
+        email: map['email'],
+        department: map['department'],
+        sem: map['sem'],
+        is_student: map['is_student']);
   }
 
   //sending to server

@@ -38,6 +38,8 @@ class ProfileState extends State<Profile> {
   // String batch = '2019';
   static const TextStyle optionStyle =
       TextStyle(fontSize: 15, fontWeight: FontWeight.normal);
+
+      
   @override
   Widget build(BuildContext context) {
     return Scaffold(

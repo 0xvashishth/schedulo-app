@@ -10,6 +10,7 @@ import 'package:schedulo/login/forgotpassword.dart';
 import 'package:schedulo/login/login.dart';
 import 'package:schedulo/login/signup.dart';
 import 'package:schedulo/metadata/question.dart';
+import 'package:schedulo/pages/profilePage.dart';
 import 'package:schedulo/utils/routes.dart';
 import 'package:schedulo/pages/dashBoard.dart';
 import 'package:schedulo/pages/updates.dart';
@@ -53,7 +54,8 @@ class MyApp extends StatelessWidget {
         MyRoutes.homeRoute: (context) => HomePage(),
         MyRoutes.dashBoardRoute: (context) => DashBoard(),
         MyRoutes.updatesRoute: (context) => Updates(),
-        MyRoutes.profileRoute: (context) => Profile(),
+        // MyRoutes.profileRoute: (context) => Profile(),
+        MyRoutes.profileRoute: (context) => ProfilePage1(),
         MyRoutes.calenderRoute: (context) => Calender(),
         MyRoutes.eventsRoute: (context) => Events(),
         MyRoutes.facultyRoute: (context) => Faculty(),
