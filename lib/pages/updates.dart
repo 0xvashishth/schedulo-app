@@ -37,7 +37,7 @@ class _UpdatesState extends State<Updates> {
         child: timeCard(),
       ),
 
-      floatingActionButton: is_student!
+      floatingActionButton: !is_student!
           ? FloatingActionButton(
               onPressed: () {
                 // Add your onPressed code here!
@@ -45,7 +45,7 @@ class _UpdatesState extends State<Updates> {
               backgroundColor: Colors.green,
               child: const Icon(Icons.navigation),
             )
-          : Text("Not Student"),
+          : Text("You Are Student"),
 
       // Container(
       //   margin: EdgeInsets.only(top: 10, bottom: 10),
