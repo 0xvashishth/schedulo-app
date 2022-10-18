@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:schedulo/modals/userModals.dart';
 import 'package:schedulo/services/lecture-service.dart';
 import 'package:schedulo/modals/lectureModel.dart';
+import 'package:intl/intl.dart';
 
 class timeCard extends StatefulWidget {
   const timeCard({key});
@@ -52,7 +53,18 @@ class _timeCardState extends State<timeCard> {
                           " : " +
                           duration +
                           " hours";
-                        
+                      var starting = tInstance[index].will_start_at!.toDate();
+                      String formattedStartTime =
+                          DateFormat.Hms().format(starting);
+                      var ending = tInstance[index].will_end_at!.toDate();
+                      String formattedEndTime =
+                          DateFormat.Hms().format(starting);
+                      final format = DateFormat.jm();
+                      var formattedending = format.format(ending);
+                      var formattedstarting = format.format(starting);
+                      String timetotal =
+                          formattedstarting + " To " + formattedending;
+
                       return Container(
                         height: 130,
                         child: Padding(
@@ -79,7 +91,7 @@ class _timeCardState extends State<timeCard> {
                                     // ),
                                     // ignore: prefer_const_constructors
                                     Text(
-                                      "9:00 AM to 10:00 AM",
+                                      timetotal,
                                       style: const TextStyle(
                                           color: Color.fromARGB(
                                               255, 123, 123, 123)),
