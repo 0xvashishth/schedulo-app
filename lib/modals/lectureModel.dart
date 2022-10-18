@@ -5,23 +5,39 @@ import 'package:flutter/material.dart';
 import 'userModals.dart';
 
 class LectureModel {
-  String? subject;
+  String? subject; //
   String? description;
-  String uid;
+
+  ///
+  String? uid; ////
   String? department;
+
+  ///
   String? sem;
+
+  ///
   int? weekday;
+
+  ///
   Timestamp? will_start_at;
+
+  ///
   Timestamp? will_end_at;
+
+  ///
   int? duration;
+
+  ///
   String? TName;
+
+  ///
   // UserModals userInstance;
-  String? userInstance;
+  String? userInstance; ////
 
   // (this.will_end_at.hour * 60 + will_end_at.minute) * 60 - (will_start_at.hour * 60 + will_start_at.minute) * 60,
   LectureModel({
     this.subject,
-    required this.uid,
+    this.uid,
     this.description,
     this.department,
     this.sem,

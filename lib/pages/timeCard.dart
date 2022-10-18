@@ -8,6 +8,7 @@ import 'package:schedulo/modals/lectureModel.dart';
 import 'package:intl/intl.dart';
 
 import '../services/database-services.dart';
+import '../widget/datetime_picker.dart';
 
 class timeCard extends StatefulWidget {
   const timeCard({key});
@@ -37,7 +38,7 @@ class _timeCardState extends State<timeCard> {
               height: 5,
             ),
             // Spacer(),
-            Center(child: ElevatedCardExample()),
+            // Center(child: ElevatedCardExample()),
             StreamBuilder<List<LectureModel>>(
               stream: LectureService().listLectures(),
               builder: (context, snapshot) {
@@ -50,7 +51,7 @@ class _timeCardState extends State<timeCard> {
                 }
                 List<LectureModel>? tInstance = snapshot.data;
                 return SizedBox(
-                  height: 500,
+                  height: 600,
                   width: MediaQuery.of(context).size.height,
                   child: ListView.separated(
                     separatorBuilder: (context, index) => Divider(
@@ -59,7 +60,7 @@ class _timeCardState extends State<timeCard> {
                     itemCount: tInstance!.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      DatabaseService ds = new DatabaseService();
+                      // DatabaseService ds = new DatabaseService();
                       // String TName = FirebaseFirestore.instance
                       //     .collection('users')
                       //     .doc(tInstance[index].userInstance)
@@ -68,9 +69,9 @@ class _timeCardState extends State<timeCard> {
                       //   return value.data()?['name'];
                       // }) as String;
                       // print(TName);
-                      var ttest = ds.getUserName(tInstance[index].userInstance);
-                      print(ttest);
-                      print("hjhj");
+                      // var ttest = ds.getUserName(tInstance[index].userInstance);
+                      // print(ttest);
+                      // print("hjhj");
                       // setState(() {});
 
                       // print(TName + "he");
