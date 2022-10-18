@@ -61,13 +61,13 @@ class _ProfilePage1State extends State<ProfilePage1> {
                   const SizedBox(height: 16),
                   Column(
                     children: [
-                      showData(FontAwesomeIcons.user,
+                      showData("Name", FontAwesomeIcons.user,
                           loggedUser.name ?? "Anonymous User"),
-                      showData(FontAwesomeIcons.envelope,
+                      showData("Email", FontAwesomeIcons.envelope,
                           loggedUser.email ?? "Anonymous Email"),
-                      showData(FontAwesomeIcons.table,
+                      showData("Semester", FontAwesomeIcons.table,
                           loggedUser.sem ?? "Anonymous Sem" " sem"),
-                      showData(FontAwesomeIcons.networkWired,
+                      showData("Department", FontAwesomeIcons.networkWired,
                           loggedUser.department ?? "Anonymous department"),
                     ],
                   )
@@ -83,7 +83,7 @@ class _ProfilePage1State extends State<ProfilePage1> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 15, fontWeight: FontWeight.normal);
 
-  Widget showData(IconData ico, String s) => Container(
+  Widget showData(String title, IconData ico, String s) => Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(10),
