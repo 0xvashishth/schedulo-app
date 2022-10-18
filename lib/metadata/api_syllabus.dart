@@ -12,9 +12,10 @@ class ApiSyllabus {
     var response = await http.get(Uri.parse(url));
     var dir = await getApplicationDocumentsDirectory();
     File file = new File("${dir.path}/data1.pdf");
-    
+
     // Opens the file, writes the list of bytes to it and closes the file.
     file.writeAsBytesSync(response.bodyBytes, flush: true);
     return file.path;
   }
+   
 }
