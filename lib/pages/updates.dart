@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:schedulo/services/database-services.dart';
+import 'package:schedulo/services/user-services.dart';
 import 'timeCard.dart';
 
 class Updates extends StatefulWidget {
@@ -19,6 +20,7 @@ class _UpdatesState extends State<Updates> {
   // DatabaseService ds = DatabaseService();
   User? user = FirebaseAuth.instance.currentUser;
   bool? is_student = true;
+  UserService us = UserService();
 
   final TextEditingController _todoController = TextEditingController();
   bool isComplet = false;
@@ -29,6 +31,7 @@ class _UpdatesState extends State<Updates> {
     super.initState();
     is_student = true;
     getUserType();
+    us.userFormFirebase(user!.uid);
   }
 
   @override

@@ -39,12 +39,19 @@ class DatabaseService {
         .doc(uid)
         .get()
         .then((value) {
+<<<<<<< HEAD
       return value;
     });
     // print("hello");
     print("kk");
     print(user_name['email']);
     print("jj");
+=======
+      return value.data();
+    }) as String;
+    print("hello");
+    print(user_name);
+>>>>>>> fe18f9e (M)
     return user_name;
   }
 }

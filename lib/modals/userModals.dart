@@ -57,10 +57,10 @@ class UserService {
   //   await todosCollection.doc(uid).update({"isComplet": true});
   // }
 
-  Future<Object> getUser(uid) async {
-    DocumentSnapshot<Object?> users = await usersCollection.doc(uid).get();
-    return users;
-  }
+  // Future<Object> getUser(uid) async {
+  //   DocumentSnapshot<Object?> users = await usersCollection.doc(uid).get();
+  //   return users;
+  // }
 
   // String todoFromFirestore(String uid) {
   //   // return usersCollection.doc(uid).get();
