@@ -16,6 +16,20 @@ class ProfilePage1 extends StatefulWidget {
 class _ProfilePage1State extends State<ProfilePage1> {
   User? user = FirebaseAuth.instance.currentUser;
   UserModals loggedUser = UserModals();
+  @override
+  void initState() {
+    super.initState();
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      loggedUser = UserModals.fromMap(value.data());
+      setState(() {
+        loggedUser;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
