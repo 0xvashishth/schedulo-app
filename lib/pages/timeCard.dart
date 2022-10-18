@@ -59,7 +59,7 @@ class _timeCardState extends State<timeCard> {
                     itemCount: tInstance!.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      // DatabaseService ds = new DatabaseService();
+                      DatabaseService ds = new DatabaseService();
                       // String TName = FirebaseFirestore.instance
                       //     .collection('users')
                       //     .doc(tInstance[index].userInstance)
@@ -68,7 +68,9 @@ class _timeCardState extends State<timeCard> {
                       //   return value.data()?['name'];
                       // }) as String;
                       // print(TName);
-                      // await ds.getUserName(tInstance[index].userInstance);
+                      var ttest = ds.getUserName(tInstance[index].userInstance);
+                      print(ttest);
+                      print("hjhj");
                       // setState(() {});
 
                       // print(TName + "he");

@@ -31,7 +31,7 @@ class DatabaseService {
     return data['is_student'];
   }
 
-  Future<String> getUserName(uid) async {
+  Future getUserName(uid) async {
     log("Form is_student");
     print(uid);
     var user_name = await FirebaseFirestore.instance
@@ -39,10 +39,12 @@ class DatabaseService {
         .doc(uid)
         .get()
         .then((value) {
-      return value.data()?['name'];
-    }) as String;
-    print("hello");
-    print(user_name);
+      return value;
+    });
+    // print("hello");
+    print("kk");
+    print(user_name.email);
+    print("jj");
     return user_name;
   }
 }
