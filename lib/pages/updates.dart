@@ -14,8 +14,16 @@ class Updates extends StatefulWidget {
   _UpdatesState createState() => _UpdatesState();
 }
 
+bool is_student = true;
+
 class _UpdatesState extends State<Updates> {
   DatabaseService ds = DatabaseService();
+
+  void initState() {
+    super.initState();
+    DatabaseService ds = DatabaseService();
+    is_student = ds.getUserType() as bool;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +36,15 @@ class _UpdatesState extends State<Updates> {
         child: timeCard(),
       ),
 
-      floatingActionButton: ds.getUserType() ? ,
-
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     // Add your onPressed code here!
-      //   },
-      //   backgroundColor: Colors.green,
-      //   child: const Icon(Icons.navigation),
-      // ),
+      floatingActionButton: !is_student
+          ? FloatingActionButton(
+              onPressed: () {
+                // Add your onPressed code here!
+              },
+              backgroundColor: Colors.green,
+              child: const Icon(Icons.navigation),
+            )
+          : Text("Not Student"),
 
       // Container(
       //   margin: EdgeInsets.only(top: 10, bottom: 10),
