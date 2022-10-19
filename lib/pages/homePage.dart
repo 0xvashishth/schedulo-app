@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:schedulo/pages/dashBoard.dart';
 import 'package:flutter/material.dart';
-import 'package:schedulo/pages/profile.dart';
 import 'package:schedulo/pages/profilePage.dart';
 import 'package:schedulo/pages/updates.dart';
 
