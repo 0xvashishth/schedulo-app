@@ -7,7 +7,8 @@
 
 - https://docs.flutter.dev/cookbook/navigation/navigation-basics
 - Getting specific properties form response body : https://www.educative.io/answers/what-is-an-http-get-response-in-flutter
-
+- https://stackoverflow.com/questions/46611369/get-all-from-a-firestore-collection-in-flutter
+- https://stackoverflow.com/questions/67840643/flutter-error-the-getter-docs-isnt-defined-for-the-type-object
 
 ### Ref
 - https://github.com/madhank93/todo-list-flutter-firebase
