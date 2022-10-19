@@ -5,8 +5,10 @@ import 'package:schedulo/modals/userModals.dart';
 class UserService {
   CollectionReference usersCollection =
       FirebaseFirestore.instance.collection("users");
+  UserModals um = UserModals();
 
   Future userFormFirebase(String uid) async {
+    // final ref = FirebaseFirestore.instance.collection('users').doc(uid);
     return usersCollection
         .doc(uid)
         .get()
