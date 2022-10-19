@@ -1,0 +1,30 @@
+ // buildCard(
+              //     'Dr. Jyoti Rani',
+              //     'Ph.D(HOD)',
+              //     '9417460026',
+              //     'Image Processing',
+              //     'https://www.mrsptu.ac.in/uploads/faculty/8/jyoti_final.jpg'),
+              // buildCard(
+              //     'Dr. Dinesh Kr.',
+              //     'Ph.D',
+              //     '8725072422',
+              //     'Network Security',
+              //     'https://www.mrsptu.ac.in//uploads/faculty/8/Dinesh.jpg'),
+              // buildCard(
+              //     'Dr. Paramjeet',
+              //     'Ph.D(DSW)',
+              //     '8725072459',
+              //     'Networking,\nSoftware Systems\nComputer graphics',
+              //     'https://www.mrsptu.ac.in/uploads/faculty/8/Dr._Paramjeet_.JPG'),
+              // buildCard(
+              //     'Dr. Shweta Rani',
+              //     'Ph.D',
+              //     '9463077886',
+              //     'Internetworking,\nImage Processing,\nSoftware Systems',
+              //     'https://www.mrsptu.ac.in/uploads/faculty/8/shweta.jpg'),
+              // buildCard(
+              //     'Dr. Naresh Garg',
+              //     'Ph.D',
+              //     '9463077886',
+              //     'Optical character recognition\nImage processing',
+              //     'https://www.mrsptu.ac.in/uploads/faculty/8/drnareshgarg.jpg')
