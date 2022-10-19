@@ -39,7 +39,6 @@ class ProfileState extends State<Profile> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 15, fontWeight: FontWeight.normal);
 
-      
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +62,14 @@ class ProfileState extends State<Profile> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () async {
+         await FirebaseAuth.instance.signOut();
+        },
+        label: const Text('Edit Profile'),
+        icon: const Icon(Icons.edit),
+        backgroundColor: Colors.blue,
       ),
       body: SingleChildScrollView(
         child: ListView(

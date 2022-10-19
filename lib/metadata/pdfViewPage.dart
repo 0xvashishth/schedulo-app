@@ -26,7 +26,7 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Academic Calander",
+          "Academic Calender",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

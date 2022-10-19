@@ -1,5 +1,4 @@
 // ignore_for_file: deprecated_member_use
-
 import 'package:schedulo/login/forgotpassword.dart';
 import 'package:schedulo/utils/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
