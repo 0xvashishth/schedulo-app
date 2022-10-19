@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.white,
           unselectedItemColor: Color.fromARGB(255, 0, 0, 0),
-          backgroundColor: Colors.blue[700],
+          backgroundColor: Colors.blue,
           onTap: _onItemTapped,
           elevation: 0,
         ),

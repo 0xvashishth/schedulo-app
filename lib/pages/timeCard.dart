@@ -7,7 +7,6 @@ import 'package:schedulo/modals/userModals.dart';
 import 'package:schedulo/services/lecture-service.dart';
 import 'package:schedulo/modals/lectureModel.dart';
 import 'package:intl/intl.dart';
-
 import '../services/database-services.dart';
 
 class timeCard extends StatefulWidget {
