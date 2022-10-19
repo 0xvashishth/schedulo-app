@@ -46,7 +46,6 @@ class _UpdatesState extends State<Updates> {
   initState() {
     super.initState();
     is_student = true;
-
     getUserType();
     // us.userFormFirebase(user!.uid);
   }
@@ -62,13 +61,13 @@ class _UpdatesState extends State<Updates> {
         child: timeCard(),
       ),
 
-      floatingActionButton: is_student!
+      floatingActionButton: !is_student!
           ? FloatingActionButton(
               onPressed: _fModalBottomSheet,
               backgroundColor: Colors.blue,
               child: const Icon(Icons.add),
             )
-          : Text("Not Student"),
+          : Text(""),
 
       // Container(
       //   margin: EdgeInsets.only(top: 10, bottom: 10),

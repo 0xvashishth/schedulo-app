@@ -42,9 +42,9 @@ class UserModals {
   }
 }
 
-// class UserService {
-//   CollectionReference usersCollection =
-//       FirebaseFirestore.instance.collection("users");
+class UserService {
+  CollectionReference usersCollection =
+      FirebaseFirestore.instance.collection("users");
 
   // Future createNewTodo(String title) async {
   //   return await todosCollection.add({
@@ -79,4 +79,4 @@ class UserModals {
   // Stream<List<Todo>> listTodos() {
   //   return todosCollection.snapshots().map(todoFromFirestore);
   // }
-// }
+}

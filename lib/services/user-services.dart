@@ -7,11 +7,11 @@ class UserService {
       FirebaseFirestore.instance.collection("users");
   UserModals um = UserModals();
 
-  Future userFormFirebase(String uid) async {
-    // final ref = FirebaseFirestore.instance.collection('users').doc(uid);
-    return usersCollection
-        .doc(uid)
-        .get()
-        .then((s) => UserModals.fromMap(s.data()));
-  }
+  // Future userFormFirebase(String uid) async {
+  //   // final ref = FirebaseFirestore.instance.collection('users').doc(uid);
+  //   return usersCollection
+  //       .doc(uid)
+  //       .get()
+  //       .then((s) => UserModals.fromMap(s.data()));
+  // }
 }
