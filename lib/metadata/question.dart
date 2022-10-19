@@ -68,8 +68,8 @@ class ApiService {
   }
 
   static List<String> Quelink = [
-    'https://www.mrsptu.ac.in/uploads2021/daa_notifications/NOTIFICATION%20114%20-%20ACADEMIC%20CALENDAR%20(EXISTING%20BATCHES)%20FOR%20SESSION%202021-22%20(1).pdf',
-    'http://www.africau.edu/images/default/sample.pdf',
+    'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+    'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
   ];
 
   static Future<String> loadPDF() async {
