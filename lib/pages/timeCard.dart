@@ -59,8 +59,19 @@ class _timeCardState extends State<timeCard> {
                 if (!snapshot.hasData) {
                   // print(snapshot.hasData);
                   // log("Hello");
-                  return const CircularProgressIndicator(
-                    color: Colors.black,
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(
+                          color: Colors.blue,
+                        ),
+                        // SizedBox(
+                        //   height: 15,
+                        // ),
+                        // LinearProgressIndicator(),
+                      ],
+                    ),
                   );
                 }
                 List<LectureModel>? tInstance1 = snapshot.data;

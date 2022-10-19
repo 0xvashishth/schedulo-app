@@ -20,36 +20,42 @@ class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.all(10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              'Information',
-              style: optionStyle,
-            ),
-            buildCard1(),
-            SizedBox(
-              height: sBox,
-            ),
-            Text(
-              'Department',
-              style: optionStyle,
-            ),
-            buildCard2(),
-            SizedBox(
-              height: sBox,
-            ),
-            Text(
-              'Resources',
-              style: optionStyle,
-            ),
-            buildCard3(),
-          ],
+      resizeToAvoidBottomInset: false,
+      body: SingleChildScrollView(
+        child: Container(
+          // padding: EdgeInsets.only(
+          //     // bottom: MediaQuery.of(context).viewInsets.bottom,
+          //     ),
+          padding: EdgeInsets.all(10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Information',
+                style: optionStyle,
+              ),
+              buildCard1(),
+              SizedBox(
+                height: sBox,
+              ),
+              Text(
+                'Department',
+                style: optionStyle,
+              ),
+              buildCard2(),
+              SizedBox(
+                height: sBox,
+              ),
+              Text(
+                'Resources',
+                style: optionStyle,
+              ),
+              buildCard3(),
+            ],
+          ),
         ),
       ),
     );
