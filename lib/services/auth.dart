@@ -17,14 +17,16 @@ class AuthService {
       String? email,
       String? department,
       String? sem,
-      bool? is_student}) async {
+      bool? is_student,
+      String? Device_Token}) async {
     UserModals loggedUser = UserModals(
         uid: uid,
         name: name,
         email: email,
         department: department,
         sem: sem,
-        is_student: is_student);
+        is_student: is_student,
+        Device_Token: Device_Token);
 
     await _firestore.collection("users").doc(uid).set(loggedUser.toMap());
     Fluttertoast.showToast(msg: "User Updated");

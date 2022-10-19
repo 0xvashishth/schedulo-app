@@ -1,9 +1,12 @@
 // ignore_for_file: prefer_const_constructors
+import 'dart:convert';
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:schedulo/modals/lectureModel.dart';
 import 'package:schedulo/modals/userModals.dart';
 import 'package:schedulo/services/database-services.dart';
@@ -11,9 +14,14 @@ import 'package:schedulo/services/lecture-service.dart';
 import 'package:schedulo/services/user-services.dart';
 import 'timeCard.dart';
 import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
 
 DateTime startdateTime = new DateTime.now();
 DateTime enddateTime = new DateTime.now();
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print("Handling a background message ${message.messageId}");
+}
 
 class Updates extends StatefulWidget {
   const Updates({Key? key}) : super(key: key);
@@ -25,10 +33,13 @@ class Updates extends StatefulWidget {
 class _UpdatesState extends State<Updates> {
   // DatabaseService ds = DatabaseService();
   User? user = FirebaseAuth.instance.currentUser;
+  String? user_token = " ";
+  // User? user = FirebaseAuth.instance.currentUser;
+  FlutterLocalNotificationsPlugin fnp = FlutterLocalNotificationsPlugin();
   bool? is_student = true;
   // UserService us = UserService();
 
-  final TextEditingController _todoController = TextEditingController();
+  // final TextEditingController _todoController = TextEditingController();
   final TextEditingController _subjectController = TextEditingController();
   final TextEditingController _departmentController = TextEditingController();
   final TextEditingController _weekdayController = TextEditingController();
@@ -43,7 +54,130 @@ class _UpdatesState extends State<Updates> {
     super.initState();
     is_student = true;
     getUserType();
+    getUserDeviceToken();
+    requestPermission();
+    // getToken();
+    initInfo();
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
     // us.userFormFirebase(user!.uid);
+  }
+
+  Future getUserDeviceToken() async {
+    // print("Form student_branch");
+    user_token = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      return value.data()!['Device_Token'];
+    }) as String;
+    print("User Token: ${user_token}");
+    setState(() {});
+    // print(is_student);
+  }
+
+  initInfo() {
+    var androidInitialise =
+        const AndroidInitializationSettings('@mipmap/ic_launcher');
+    // var iOSInitialze = const IOSIniti
+    var initializationSettingsIOS = new DarwinInitializationSettings();
+    var initializationSettings = new InitializationSettings(
+        android: androidInitialise, iOS: initializationSettingsIOS);
+    // var initializationSettings =
+    //     InitializationSettings(android: androidInitialise);
+    fnp.initialize(initializationSettings);
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+      print("........onMessage........");
+      print(
+          "onMessage: ${message.notification?.title}/${message.notification?.body}");
+      BigTextStyleInformation bigTextStyleInformation = BigTextStyleInformation(
+        message.notification!.body.toString(),
+        htmlFormatBigText: true,
+        contentTitle: message.notification!.title.toString(),
+        htmlFormatContentTitle: true,
+      );
+
+      AndroidNotificationDetails androidNotificationDetails =
+          AndroidNotificationDetails(
+        'dbfood',
+        'dbfood',
+        importance: Importance.high,
+        styleInformation: bigTextStyleInformation,
+        priority: Priority.high,
+        playSound: true,
+      );
+      NotificationDetails platformChannelSpecifics = NotificationDetails(
+          android: androidNotificationDetails,
+          iOS: const DarwinNotificationDetails());
+      await fnp.show(0, message.notification?.title, message.notification?.body,
+          platformChannelSpecifics,
+          payload: message.data['title']);
+    });
+  }
+
+  // void saveToken(String token) async {
+  //   await FirebaseFirestore.instance.collection("User Token").doc("User1").set({
+  //     'token': token,
+  //   });
+  // }
+
+  void requestPermission() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: true,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      print("Granted");
+    } else if (settings.authorizationStatus ==
+        AuthorizationStatus.provisional) {
+      print("granted provisional");
+    } else {
+      print("denied");
+    }
+  }
+
+  void sendPushNotification(String token, String subject, String Tname) async {
+    try {
+      print("Inside Push Notification");
+      print(token + Tname + subject);
+      await http.post(
+        Uri.parse('https://fcm.googleapis.com/fcm/send'),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+          'Authorization':
+              'key=AAAA9buc-3Y:APA91bF-C6ffgOtG7RCa3PrSE09oEAE94WMsGsvM7HV_3a1eoXdhp6mzOkJ2OOCYFNQwkAgCpBBntSgL7wd7vEOM-O2YT9zrRzZTKKiFv-6qdJX4rg58ZjFEERGtp2z2rEE-EeW_ktmS',
+        },
+        body: jsonEncode(
+          <String, dynamic>{
+            // print(object);
+            'priority': 'high',
+            'data': <String, dynamic>{
+              'click_action': 'FLUTTER_NOTIFICATION_CLICK',
+              'status': 'done',
+              'body': Tname,
+              'title': subject,
+            },
+            "notification": <String, dynamic>{
+              "title": subject,
+              "body": Tname,
+              "android_channel_id": "dbfood"
+            },
+            "to": token,
+          },
+        ),
+      );
+      print("Before Push Notification");
+    } catch (e) {
+      print(e);
+    }
+    print("After try catch Push Notification");
   }
 
   @override
@@ -337,7 +471,16 @@ class _UpdatesState extends State<Updates> {
                               lecture.duration =
                                   int.parse(_durationController.text.trim());
                               lecture.description = "This is sample one";
-                              User? user = FirebaseAuth.instance.currentUser;
+                              // User? user = FirebaseAuth.instance.currentUser;
+                              // DocumentSnapshot snap = await FirebaseFirestore
+                              //     .instance
+                              //     .collection("User Token")
+                              //     .doc("User1")
+                              //     .get();
+                              // String token = snap['token'];
+                              // print(token);
+                              String lname = lecture.subject as String;
+                              String Tname = lecture.TName as String;
                               // UserModals loggedUser = UserModals();
                               lecture.userInstance = user!.uid;
                               lecture.sem = _semesterController.text.trim();
@@ -365,6 +508,21 @@ class _UpdatesState extends State<Updates> {
                               // });
 
                               await LectureService().createNewLecture(lecture);
+                              UserService us = new UserService();
+                              // print("Before List Get Called");
+                              List<UserModals> objs =
+                                  await us.getData() as List<UserModals>;
+                              // print(objs);
+                              // print("After List Get Called");
+                              for (var abv in objs) {
+                                String? token = abv.Device_Token;
+
+                                // print("Inside Loop");
+                                // String name = abv[0];
+                                // print(abv.name);
+                                sendPushNotification(token!, lname, Tname);
+                              }
+                              // List<UserModals> = us.userFromFirestore();
                               Navigator.pop(context);
                             }
                             setState(() {

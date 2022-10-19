@@ -1,8 +1,10 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unnecessary_new
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:schedulo/modals/userModals.dart';
 import 'package:schedulo/services/lecture-service.dart';
 import 'package:schedulo/modals/lectureModel.dart';
@@ -16,16 +18,103 @@ class timeCard extends StatefulWidget {
   State<timeCard> createState() => _timeCardState();
 }
 
+// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+//   print("Handling a background message ${message.messageId}");
+// }
+
 class _timeCardState extends State<timeCard> {
   // var TName = "";
+  // String? mtoken = " ";
   var student_branch = "";
   User? user = FirebaseAuth.instance.currentUser;
+  // FlutterLocalNotificationsPlugin fnp = FlutterLocalNotificationsPlugin();
   initState() {
     super.initState();
+    // requestPermission();
+    // getToken();
     student_branch = "";
     getUserType();
+    // initInfo();
+    // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
     // TName = "";
   }
+
+  // initInfo() {
+  //   var androidInitialise =
+  //       const AndroidInitializationSettings('@mipmap/ic_launcher');
+  //   // var iOSInitialze = const IOSIniti
+  //   var initializationSettingsIOS = new DarwinInitializationSettings();
+  //   var initializationSettings = new InitializationSettings(
+  //       android: androidInitialise, iOS: initializationSettingsIOS);
+  //   // var initializationSettings =
+  //   //     InitializationSettings(android: androidInitialise);
+  //   fnp.initialize(initializationSettings);
+
+  //   FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+  //     print("........onMessage........");
+  //     print(
+  //         "onMessage: ${message.notification?.title}/${message.notification?.body}");
+  //     BigTextStyleInformation bigTextStyleInformation = BigTextStyleInformation(
+  //       message.notification!.body.toString(),
+  //       htmlFormatBigText: true,
+  //       contentTitle: message.notification!.title.toString(),
+  //       htmlFormatContentTitle: true,
+  //     );
+
+  //     AndroidNotificationDetails androidNotificationDetails =
+  //         AndroidNotificationDetails(
+  //       'dbfood',
+  //       'dbfood',
+  //       importance: Importance.high,
+  //       styleInformation: bigTextStyleInformation,
+  //       priority: Priority.high,
+  //       playSound: true,
+  //     );
+  //     NotificationDetails platformChannelSpecifics = NotificationDetails(
+  //         android: androidNotificationDetails,
+  //         iOS: const DarwinNotificationDetails());
+  //     await fnp.show(0, message.notification?.title, message.notification?.body,
+  //         platformChannelSpecifics,
+  //         payload: message.data['title']);
+  //   });
+  // }
+
+  // void getToken() async {
+  //   await FirebaseMessaging.instance.getToken().then((token) {
+  //     setState(() {
+  //       mtoken = token;
+  //       print("my token is: $mtoken");
+  //     });
+  //     saveToken(token!);
+  //   });
+  // }
+
+  // void saveToken(String token) async {
+  //   await FirebaseFirestore.instance.collection("User Token").doc("User1").set({
+  //     'token': token,
+  //   });
+  // }
+
+  // void requestPermission() async {
+  //   FirebaseMessaging messaging = FirebaseMessaging.instance;
+  //   NotificationSettings settings = await messaging.requestPermission(
+  //     alert: true,
+  //     announcement: true,
+  //     badge: true,
+  //     carPlay: false,
+  //     criticalAlert: false,
+  //     provisional: false,
+  //     sound: true,
+  //   );
+  //   if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+  //     print("Granted");
+  //   } else if (settings.authorizationStatus ==
+  //       AuthorizationStatus.provisional) {
+  //     print("granted provisional");
+  //   } else {
+  //     print("denied");
+  //   }
+  // }
 
   Future getUserType() async {
     print("Form student_branch");

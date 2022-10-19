@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:schedulo/modals/userModals.dart';
 import 'package:schedulo/pages/homePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,6 +20,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  String? mtoken = " ";
   String? errorMessage;
   final _auth = FirebaseAuth.instance;
   //our form key
@@ -29,6 +31,27 @@ class _SignUpState extends State<SignUp> {
   final emailEditingController = new TextEditingController();
   final passwordEditingController = new TextEditingController();
   final confirmPasswordEditingController = new TextEditingController();
+
+  initState() {
+    super.initState();
+    // is_student = true;
+    // getUserType();
+    // requestPermission();
+    getToken();
+    // initInfo();
+    // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+    // us.userFormFirebase(user!.uid);
+  }
+
+  void getToken() async {
+    await FirebaseMessaging.instance.getToken().then((token) {
+      setState(() {
+        mtoken = token;
+        print("my token is: $mtoken");
+      });
+      // saveToken(token!);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -275,6 +298,7 @@ class _SignUpState extends State<SignUp> {
     userModel.department = depart;
     userModel.sem = sem;
     userModel.is_student = true;
+    userModel.Device_Token = mtoken;
 
     await firebaseFirestore
         .collection("users")

@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:schedulo/data/calculator.dart';
 import 'package:schedulo/data/faq.dart';
 import 'package:schedulo/data/halloffame.dart';
@@ -29,6 +30,7 @@ import 'package:provider/provider.dart';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await FirebaseMessaging.instance.getInitialMessage();
   runApp(const MyApp());
 }
 
