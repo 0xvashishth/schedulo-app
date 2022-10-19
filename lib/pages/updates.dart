@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,11 +7,8 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:schedulo/modals/lectureModel.dart';
 import 'package:schedulo/modals/userModals.dart';
 import 'package:schedulo/services/database-services.dart';
-
 import 'package:schedulo/services/lecture-service.dart';
-
 import 'package:schedulo/services/user-services.dart';
-
 import 'timeCard.dart';
 import 'package:intl/intl.dart';
 

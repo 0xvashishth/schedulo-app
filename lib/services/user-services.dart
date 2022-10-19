@@ -1,3 +1,4 @@
+// ignore_for_file: prefer_const_constructors
 import 'package:schedulo/modals/lectureModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:schedulo/modals/userModals.dart';
