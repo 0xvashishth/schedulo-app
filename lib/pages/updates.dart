@@ -508,6 +508,7 @@ class _UpdatesState extends State<Updates> {
                               // });
 
                               await LectureService().createNewLecture(lecture);
+                              Navigator.pop(context);
                               UserService us = new UserService();
                               // print("Before List Get Called");
                               List<UserModals> objs =
@@ -516,14 +517,13 @@ class _UpdatesState extends State<Updates> {
                               // print("After List Get Called");
                               for (var abv in objs) {
                                 String? token = abv.Device_Token;
-
-                                // print("Inside Loop");
-                                // String name = abv[0];
-                                // print(abv.name);
-                                sendPushNotification(token!, lname, Tname);
+                                if (abv.department ==
+                                        _departmentController.text.trim() &&
+                                    abv.sem ==
+                                        _semesterController.text.trim()) {
+                                  sendPushNotification(token!, lname, Tname);
+                                }
                               }
-                              // List<UserModals> = us.userFromFirestore();
-                              Navigator.pop(context);
                             }
                             setState(() {
                               circular = false;

@@ -26,6 +26,7 @@ class _timeCardState extends State<timeCard> {
   // var TName = "";
   // String? mtoken = " ";
   var student_branch = "";
+  var student_sem = "";
   User? user = FirebaseAuth.instance.currentUser;
   // FlutterLocalNotificationsPlugin fnp = FlutterLocalNotificationsPlugin();
   initState() {
@@ -33,6 +34,7 @@ class _timeCardState extends State<timeCard> {
     // requestPermission();
     // getToken();
     student_branch = "";
+    student_sem = "";
     getUserType();
     // initInfo();
     // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
@@ -125,6 +127,13 @@ class _timeCardState extends State<timeCard> {
         .then((value) {
       return value.data()!['department'];
     }) as String;
+    student_sem = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      return value.data()!['sem'];
+    }) as String;
     setState(() {});
     // print(is_student);
   }
@@ -167,7 +176,8 @@ class _timeCardState extends State<timeCard> {
                 List<LectureModel>? tInstance = [];
                 var currentWeekDay = DateTime.now().weekday;
                 for (var lec in tInstance1!) {
-                  if (lec.department == student_branch) {
+                  if (lec.department == student_branch &&
+                      lec.sem == student_sem) {
                     if (currentWeekDay == lec.weekday) {
                       tInstance.add(lec);
                     }
