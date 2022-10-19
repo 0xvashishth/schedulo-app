@@ -59,7 +59,14 @@ class _UpdatesState extends State<Updates> {
     // getToken();
     initInfo();
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+    getToken();
     // us.userFormFirebase(user!.uid);
+  }
+
+  void getToken() async {
+    await FirebaseMessaging.instance.getToken().then((token) {
+      print("my token is: $token");
+    });
   }
 
   Future getUserDeviceToken() async {
