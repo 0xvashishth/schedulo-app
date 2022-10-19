@@ -43,7 +43,7 @@ class _ProfilePage1State extends State<ProfilePage1> {
           Expanded(
             flex: 3,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(6.0),
               child: Column(
                 children: [
                   Text(
@@ -53,7 +53,7 @@ class _ProfilePage1State extends State<ProfilePage1> {
                         .headline6
                         ?.copyWith(fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 9),
                   // Row(
                   //   mainAxisAlignment: MainAxisAlignment.center,
                   //   children: [
@@ -75,7 +75,7 @@ class _ProfilePage1State extends State<ProfilePage1> {
                   //     ),
                   //   ],
                   // ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
                   Column(
                     children: [
                       showData("Name", FontAwesomeIcons.user,
@@ -189,8 +189,8 @@ class _ProfilePage1State extends State<ProfilePage1> {
 // }
 
 class _TopPortion extends StatelessWidget {
-  static const String profileurl =
-      "https://avatars.dicebear.com/api/gridy/d1dsds52f.png";
+  // static const String profileurl =
+  //     "https://avatars.dicebear.com/api/gridy/d1dsd52f.png";
 
   const _TopPortion({Key? key}) : super(key: key);
 
@@ -224,7 +224,9 @@ class _TopPortion extends StatelessWidget {
                     color: Colors.black,
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                        fit: BoxFit.cover, image: NetworkImage(profileurl)),
+                        fit: BoxFit.cover,
+                        image: NetworkImage(
+                            "https://avatars.dicebear.com/api/gridy/dds52f.png")),
                   ),
                 ),
                 Positioned(
