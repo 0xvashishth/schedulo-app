@@ -12,6 +12,7 @@ import 'package:schedulo/modals/userModals.dart';
 import 'package:schedulo/services/database-services.dart';
 import 'package:schedulo/services/lecture-service.dart';
 import 'package:schedulo/services/user-services.dart';
+import '../utils/routes.dart';
 import 'timeCard.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
@@ -192,6 +193,16 @@ class _UpdatesState extends State<Updates> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('TimeTable'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'LogOut',
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.pushNamed(context, MyRoutes.loginRoute);
+            },
+          ),
+        ],
       ),
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: Center(

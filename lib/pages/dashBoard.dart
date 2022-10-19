@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:schedulo/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,6 +23,16 @@ class _DashBoardState extends State<DashBoard> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Dashboard'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'LogOut',
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.pushNamed(context, MyRoutes.loginRoute);
+            },
+          ),
+        ],
       ),
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
@@ -98,17 +109,17 @@ class _DashBoardState extends State<DashBoard> {
                   'Books',
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    Navigator.pushNamed(context, MyRoutes.calculatorRoute);
-                  });
-                },
-                child: buildCon(
-                  FontAwesomeIcons.calculator,
-                  'Calculator',
-                ),
-              ),
+              // GestureDetector(
+              //   onTap: () {
+              //     setState(() {
+              //       Navigator.pushNamed(context, MyRoutes.calculatorRoute);
+              //     });
+              //   },
+              //   child: buildCon(
+              //     FontAwesomeIcons.calculator,
+              //     'Calculator',
+              //   ),
+              // ),
               GestureDetector(
                 onTap: () {
                   setState(() {
