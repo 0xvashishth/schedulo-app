@@ -1,3 +1,4 @@
+// ignore_for_file: prefer_const_constructors
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,6 +12,7 @@ class ForgotPassword extends StatefulWidget {
 
 class _ForgotPasswordState extends State<ForgotPassword> {
   final _formKey = GlobalKey<FormState>();
+
   TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -54,9 +56,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       child: MaterialButton(
         padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
         onPressed: () async {
-          final user = FirebaseAuth.instance.currentUser;
-          await user?.sendEmailVerification();
-          // Navigator.of(context).pop();
+          String email = emailController.text;
+          print("Here");
+          print(email);
+          final _auth = FirebaseAuth.instance;
+          await _auth.sendPasswordResetEmail(email: email);
+
+          // final user = FirebaseAuth.instance.currentUser;
+          // await user?.sendEmailVerification();
+          Navigator.of(context).pop();
         },
         child: Text(
           "SignUp",
