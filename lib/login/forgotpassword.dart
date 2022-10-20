@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -18,7 +19,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           child: Form(
             key: _formKey,
             child: TextFormField(
-              obscureText: true,
+              // obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Email',
                 prefixIcon: Icon(Icons.mail),
@@ -52,7 +53,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       color: Colors.blueAccent,
       child: MaterialButton(
         padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-        onPressed: () {},
+        onPressed: () async {
+          final user = FirebaseAuth.instance.currentUser;
+          await user?.sendEmailVerification();
+          // Navigator.of(context).pop();
+        },
         child: Text(
           "SignUp",
           textAlign: TextAlign.center,
@@ -67,8 +72,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.blueAccent),
-          onPressed: () {
+          onPressed: () async {
             // passing this to our root
+            // final user = FirebaseAuth.instance.currentUser;
+            // await user?.sendEmailVerification();
             Navigator.of(context).pop();
           },
         ),
