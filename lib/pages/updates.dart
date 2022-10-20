@@ -199,7 +199,8 @@ class _UpdatesState extends State<Updates> {
             tooltip: 'LogOut',
             onPressed: () async {
               await FirebaseAuth.instance.signOut();
-              Navigator.pushNamed(context, MyRoutes.loginRoute);
+              // Navigator.pushNamed(context, MyRoutes.loginRoute);
+              Navigator.of(context).pushReplacementNamed(MyRoutes.loginRoute);
             },
           ),
         ],

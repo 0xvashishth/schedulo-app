@@ -29,7 +29,8 @@ class _DashBoardState extends State<DashBoard> {
             tooltip: 'LogOut',
             onPressed: () async {
               await FirebaseAuth.instance.signOut();
-              Navigator.pushNamed(context, MyRoutes.loginRoute);
+              // Navigator.pushNamed(context, MyRoutes.loginRoute);
+              Navigator.of(context).pushReplacementNamed(MyRoutes.loginRoute);
             },
           ),
         ],
