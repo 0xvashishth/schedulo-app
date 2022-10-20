@@ -22,6 +22,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             key: _formKey,
             child: TextFormField(
               // obscureText: true,
+              controller: emailController,
               decoration: InputDecoration(
                 labelText: 'Email',
                 prefixIcon: Icon(Icons.mail),
@@ -40,9 +41,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 }
                 return null;
               },
-              onSaved: (value) {
-                emailController.text = value!;
-              },
+              // onSaved: (value) {
+              //   // emailController.text = value!;
+              // },
               autofocus: false,
               textInputAction: TextInputAction.done,
             ),
@@ -56,7 +57,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       child: MaterialButton(
         padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
         onPressed: () async {
-          String email = emailController.text;
+          String email = emailController.text.trim();
           print("Here");
           print(email);
           final _auth = FirebaseAuth.instance;
